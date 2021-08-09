@@ -1,8 +1,8 @@
-const fs = require("fs").promises;
-const path = require("path");
-const { getPopularMovie, getNowPlaying } = require("../api");
+const fs = require('fs').promises;
+const path = require('path');
+const { getPopularMovie, getNowPlaying } = require('../api');
 
-const filePath = path.resolve(__dirname, "../db/movies.json");
+const filePath = path.resolve(__dirname, '../db/movies.json');
 
 const getPopularMovies = async (req, res) => {
   const clean = (
@@ -11,7 +11,7 @@ const getPopularMovies = async (req, res) => {
   ) => ({
     title,
     img: `https://image.tmdb.org/t/p/${
-      img === "original" ? img : "w500"
+      img === 'original' ? img : 'w500'
     }${backdrop_path}`,
     score: vote_average,
     year: release_date.slice(0, 4),
@@ -21,7 +21,7 @@ const getPopularMovies = async (req, res) => {
   try {
     nowPlaying = await getNowPlaying();
     nowPlaying = nowPlaying.results;
-    nowPlaying = clean(nowPlaying[0], "original");
+    nowPlaying = clean(nowPlaying[0], 'original');
   } catch (e) {
     nowPlaying = {};
   }
@@ -41,14 +41,14 @@ const getPopularMovies = async (req, res) => {
 };
 
 const getMyMovies = async (req, res) => {
-  const file = await fs.readFile(filePath, "utf-8");
+  const file = await fs.readFile(filePath, 'utf-8');
   let myMovies = JSON.parse(file);
   myMovies = myMovies.slice(-4);
   res.status(200).json(myMovies);
 };
 
 const postMovie = async (req, res) => {
-  const file = await fs.readFile(filePath, "utf-8");
+  const file = await fs.readFile(filePath, 'utf-8');
   let myMovies = JSON.parse(file);
   myMovies = [...myMovies, req.body];
   await fs.writeFile(filePath, JSON.stringify(myMovies));

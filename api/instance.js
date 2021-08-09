@@ -1,9 +1,9 @@
-const axios = require("axios");
+const axios = require('axios');
 
 const axiosConfig = {
-  baseURL: "https://api.themoviedb.org/3/movie",
+  baseURL: 'https://api.themoviedb.org/3/movie',
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 };
 

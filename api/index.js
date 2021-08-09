@@ -1,4 +1,4 @@
-const { getPopularMovie, getNowPlaying } = require("./movies");
+const { getPopularMovie, getNowPlaying } = require('./movies');
 
 module.exports = {
   getPopularMovie,
