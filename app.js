@@ -3,7 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
@@ -28,5 +28,5 @@ app.listen(port, () => {
       console.log(e);
     }
   })();
-  console.log(`Example app listening at ${port}`);
+  console.log(`listening at ${port}`);
 });
